@@ -23,6 +23,21 @@ public:
     {
         this->pPrev = prevNode;
     }
+
+    void setWeight(int newWeight)
+    {
+        this->weight = newWeight;
+    }
+
+    void setBPM(int BPM)
+    {
+        this->bench_press_max = BPM;
+    }
+
+    void setProtein(int newProtein)
+    {
+        this->protein_intake = newProtein;
+    }
     //getters
     dataNode* getNext();
     dataNode* getPrev()

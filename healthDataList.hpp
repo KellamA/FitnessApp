@@ -27,7 +27,13 @@ class healthDatall
     void insert(dataNode* newNode);
     
     void printList();
+
+    void newnodeinsert();
+
+    void exitwritetofile();
     
+    void editNode(dataNode* editNode);
+
     private:
 
     dataNode* pHead;
@@ -81,5 +87,81 @@ void healthDatall::printList()
     {
         cout << "Date: " << pCur->getdate() << ", Weight (lbs): " << pCur->getweight() << ", PenchPressMax (lbs): " << pCur->getBPM() << ", Protein Intake (g): " << pCur->getprotein() << endl;
         pCur = pCur->getNext();
+    }
+}
+
+void healthDatall::newnodeinsert()
+{
+    std::string date;
+    int weight = 0, BPM = 0, Protein = 0;
+    auto now = std::chrono::system_clock::now();
+    auto now_time_t = std::chrono::system_clock::to_time_t(now);
+    date = std::ctime(&now_time_t);
+    date.erase(date.size()-1, 1);
+    date.erase(date.size()-13, 9);
+    if (this->pTail->getdate() == date)
+    {
+        int choice;
+        cout << "Data already recorded for today, would you like it edit? (Y = 1/N = 2): ";
+        cin >> choice;
+        if(choice == 1 || choice == 2)
+        {
+            this->editNode(this->pTail);
+            return;
+        }
+    }
+     cout << "Enter weight in lbs: ";
+    cin >> weight;
+    cout << "\nEnter bench press max: ";
+    cin >> BPM;
+    cout << "Enter grams of protein consumed today: ";
+    cin >> Protein;
+    dataNode* newNode = new dataNode(date, weight, BPM, Protein);
+    this->insert(newNode);
+}
+
+void healthDatall::exitwritetofile()
+{
+    std::ofstream outfile("fitnessData.txt");
+    dataNode* pCur = this->pHead;
+    while (pCur != nullptr)
+    {
+        if(this->pHead != pCur)
+        {
+            outfile << endl;
+        }
+        outfile << pCur->getdate() << "," << pCur->getweight() << "," << pCur->getBPM() << "," << pCur->getprotein();
+        pCur = pCur->getNext();
+    }  
+    outfile.close();
+}
+
+void healthDatall::editNode(dataNode* editNode)
+{
+    int choice;
+    int integer = 0;
+    cout  << "Would you like to enter new weight? (Y = 1/N = 2): ";
+    cin >> choice;
+    if (choice == 1)
+    {
+        cout << "Enter new weight in lbs: ";
+        cin >> integer;
+        editNode->setWeight(integer);
+    }
+    cout  << "Would you like to enter new bench press max? (Y = 1/N = 2): ";
+    cin >> choice;
+    if (choice == 1)
+    {
+        cout << "Enter new Bench Press Max in lbs: ";
+        cin >> integer;
+        editNode->setBPM(integer);
+    }
+    cout  << "Would you like to enter new protein intake? (Y = 1/N = 2): ";
+    cin >> choice;
+    if (choice == 1)
+    {
+        cout << "Enter new weight in lbs: ";
+        cin >> integer;
+        editNode->setProtein(integer);
     }
 }

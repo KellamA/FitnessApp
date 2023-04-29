@@ -20,23 +20,28 @@ void app::runApp()
     bool exit = false;
     while(exit == false)  
     {
-        cout << "** Fitness Tracker **" << endl << "1.) Record Info\n" << "2.) View Complete Raw Health Data\n" << endl;
+        cout << "** Fitness Tracker **" << endl << "1.) Record Info\n" << "2.) View Complete Raw Health Data\n"  << "0.) Exit Program" << endl;
         cin >> choice;
         switch(choice)
         {
             case 1:
             {
-
+            healthData.newnodeinsert();
+            break;
             }
             case 2:
             {
             healthData.printList();
+            break;
             }
             case 0:
             {
             exit = true;
+            break;
             }
         }
     }
+    healthData.exitwritetofile();
+    
 }
 
