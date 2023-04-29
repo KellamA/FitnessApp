@@ -1,6 +1,7 @@
-#include "header.hpp"
+#include "app.hpp"
 
 int main(void)
 {
-    std::cout << "Hello Github!" << std::endl;;
+    app newInstance;
+    newInstance.runApp();
 }
