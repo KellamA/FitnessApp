@@ -24,17 +24,17 @@ void app::runApp()
         cin >> choice;
         switch(choice)
         {
-            case 1:
+            case 1: // Record Info
             {
             healthData.newnodeinsert();
             break;
             }
-            case 2:
+            case 2: // View Data
             {
             healthData.printList();
             break;
             }
-            case 0:
+            case 0: // ecit
             {
             exit = true;
             break;
