@@ -4,7 +4,6 @@ class app
 {
     public:
         void runApp();
-        void load(std::ifstream *loadFile);
 
     private:
 
