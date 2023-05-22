@@ -93,17 +93,17 @@ void healthDatall::printList()
 void healthDatall::newnodeinsert()
 {
     std::string date;
-    int weight = 0, BPM = 0, Protein = 0;
-    auto now = std::chrono::system_clock::now();
+    int weight = 0, BPM = 0, Protein = 0; // initialize Variables
+    auto now = std::chrono::system_clock::now(); 
     auto now_time_t = std::chrono::system_clock::to_time_t(now);
-    date = std::ctime(&now_time_t);
+    date = std::ctime(&now_time_t); // get date
     date.erase(date.size()-1, 1);
-    date.erase(date.size()-13, 9);
-    if (this->pTail->getdate() == date)
+    date.erase(date.size()-13, 9); // format date and get rid of unnecesary data
+    if (this->pTail->getdate() == date) // checks if data has already been entered for certain day
     {
         int choice;
-        cout << "Data already recorded for today, would you like it edit? (Y = 1/N = 2): ";
-        cin >> choice;
+        cout << "Data already recorded for today, would you like it edit? (Y = 1/N = 2): "; // prompt user for choice 
+        cin >> choice; // read in choice
         if(choice == 1 || choice == 2)
         {
             this->editNode(this->pTail);
