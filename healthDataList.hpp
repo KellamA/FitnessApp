@@ -104,11 +104,12 @@ void healthDatall::newnodeinsert()
         int choice;
         cout << "Data already recorded for today, would you like it edit? (Y = 1/N = 2): "; // prompt user for choice 
         cin >> choice; // read in choice
-        if(choice == 1 || choice == 2)
+        if(choice == 1)
         {
             this->editNode(this->pTail);
             return;
         }
+        return; // if user doesn't say yes
     }
      cout << "Enter weight in lbs: ";
     cin >> weight;
